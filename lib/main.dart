@@ -1,6 +1,7 @@
 import 'package:elk_frontend/production/others/constants/project_strings.dart';
 import 'package:elk_frontend/production/others/decorations/project_colors.dart';
-import 'package:elk_frontend/production/presentation/pages/main_page.dart';
+import 'package:elk_frontend/production/presentation/pages/main_page/main_page.dart';
+import 'package:elk_frontend/production/presentation/pages/splash_screen_page/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
           ),
         ),
-      home: const SearchPage(),
+      home: const SplashScreen(),
     );
   }
 }

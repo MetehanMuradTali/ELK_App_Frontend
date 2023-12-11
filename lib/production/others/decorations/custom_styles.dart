@@ -1,16 +1,17 @@
 import 'package:elk_frontend/production/others/constants/project_doubles.dart';
 import 'package:elk_frontend/production/others/decorations/project_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MainStyles {
-  static const TextStyle greenStyle = TextStyle(color: MainColors.color1);
-  static const TextStyle whiteStyle = TextStyle(
+  static TextStyle greenStyle = GoogleFonts.roboto(color: MainColors.color1);
+  static TextStyle whiteStyle = GoogleFonts.roboto(
     color: MainColors.color3,
   );
 
-  static const TextStyle greenHeaderStyle =
-      TextStyle(color: MainColors.color1, fontSize: MainDoubles.headerFontSize);
-  static const TextStyle whiteHeaderStyle = TextStyle(
+  static TextStyle greenHeaderStyle = GoogleFonts.roboto(
+      color: MainColors.color1, fontSize: MainDoubles.headerFontSize);
+  static TextStyle whiteHeaderStyle = GoogleFonts.roboto(
     color: MainColors.color3,
     fontWeight: FontWeight.w700,
     fontSize: MainDoubles.headerFontSize,

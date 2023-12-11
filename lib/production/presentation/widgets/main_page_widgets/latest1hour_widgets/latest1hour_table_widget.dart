@@ -5,17 +5,17 @@ import 'package:elk_frontend/production/others/constants/projects_lists.dart';
 import 'package:elk_frontend/production/others/decorations/custom_borders.dart';
 import 'package:elk_frontend/production/others/decorations/custom_styles.dart';
 import 'package:elk_frontend/production/others/decorations/project_colors.dart';
-import 'package:elk_frontend/production/presentation/state_manement/cubit/report_cubit/report_cubit.dart';
+import 'package:elk_frontend/production/presentation/state_manement/cubit/latest1hour_cubit/latest1hour_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ReportsTable extends StatelessWidget {
-  const ReportsTable({super.key});
+class Latest1HourTable extends StatelessWidget {
+  const Latest1HourTable({super.key});
   final String selectedColumn = ReportWidgetStrings.reportOptionDefault;
   @override
   Widget build(BuildContext context) {
     late DataTableSource rows;
-    return BlocBuilder<ReportCubit, ReportState>(
+    return BlocBuilder<Latest1HourCubit, Latest1HourState>(
       builder: (context, state) {
         rows = DataTableRows(
             newState: state.currentState, rows: state.valuesToShow);
@@ -40,18 +40,18 @@ class DataTableRows extends DataTableSource {
   final bool _isRowCountApproximate = false;
   int selectedRowCountValue = 0;
   List<dynamic> rows;
-  final ReportStates newState;
+  final Latest1HourStates newState;
 
   DataTableRows({required this.rows, required this.newState});
   @override
   DataRow? getRow(int index) {
     switch (newState) {
-      case ReportStates.success:
+      case Latest1HourStates.success:
         return DataRow(cells: [
           DataCell(Text("${rows[index]["key"]}")),
           DataCell(Text("${rows[index]["doc_count"]}"))
         ], color: const MaterialStatePropertyAll(MainColors.color1));
-      case ReportStates.loading:
+      case Latest1HourStates.loading:
         return SortWidgetLists.loadingRow;
       default:
         return SortWidgetLists.emptyRow;
@@ -62,7 +62,7 @@ class DataTableRows extends DataTableSource {
   bool get isRowCountApproximate => _isRowCountApproximate;
 
   @override
-  int get rowCount => newState == ReportStates.success ? rows.length : 10;
+  int get rowCount => newState == Latest1HourStates.success ? rows.length : 10;
 
   @override
   int get selectedRowCount => selectedRowCountValue;

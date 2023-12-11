@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:elk_frontend/production/data/data_sources/elk_api.dart';
+import 'package:elk_frontend/production/data/api/elk_api.dart';
 
 part 'search_state.dart';
 

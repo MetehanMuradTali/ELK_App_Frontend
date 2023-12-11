@@ -7,14 +7,14 @@ import 'package:elk_frontend/production/others/decorations/custom_styles.dart';
 import 'package:elk_frontend/production/others/decorations/project_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../state_manement/cubit/sort_cubit.dart';
+import '../../../state_manement/cubit/sort_cubit/sort_cubit.dart';
 
 class SortResultTable extends StatelessWidget {
   const SortResultTable({super.key});
   final String selectedColumn = MainStrings.searchOption1value;
   @override
   Widget build(BuildContext context) {
-    late  DataTableSource rows;
+    late DataTableSource rows;
     return BlocBuilder<SortCubit, SortState>(
       builder: (context, state) {
         rows = DataTableRows(
@@ -22,14 +22,13 @@ class SortResultTable extends StatelessWidget {
         return PaginatedDataTable2(
           columns: SortWidgetLists.sortTableColumnNames,
           source: rows,
-          
           showFirstLastButtons: true,
           renderEmptyRowsInTheEnd: false,
           minWidth: SortWidgetDoubles.mainWidth,
           dividerThickness: MainDoubles.tableDividerTickness,
           dataTextStyle: MainStyles.whiteStyle,
           headingTextStyle: MainStyles.whiteHeaderStyle,
-          headingRowColor: const MaterialStatePropertyAll(MainColors.color2),
+          headingRowColor: const MaterialStatePropertyAll(MainColors.color4),
           border: MainBorders.customTableBorder,
         );
       },

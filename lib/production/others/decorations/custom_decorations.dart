@@ -4,15 +4,15 @@ import 'package:elk_frontend/production/others/decorations/project_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomBoxDecorations {
-  static const BoxDecoration outsideBoxDecor = BoxDecoration(
+  static BoxDecoration outsideBoxDecor = const BoxDecoration(
       color: MainColors.color1,
       borderRadius: BorderRadius.all(Radius.circular(10)),
       boxShadow: [
         BoxShadow(
-          offset: Offset(-1, 4),
-          blurRadius: 2,
+          offset: Offset(0, 2),
+          blurRadius: 1,
           spreadRadius: 1,
-          color: Colors.grey,
+          color: Colors.black38,
         )
       ]);
   static BoxDecoration ddWidgetOutsideDecor = BoxDecoration(
@@ -37,9 +37,9 @@ class SearchWidgetDecorations {
   static BoxDecoration searchTableDecor = const BoxDecoration(boxShadow: [
     BoxShadow(
       offset: Offset(0, 0),
-      blurRadius: 2,
+      blurRadius: 1,
       spreadRadius: 1,
-      color: Colors.grey,
+      color: Colors.black26,
     )
   ]);
 }

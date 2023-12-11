@@ -3,5 +3,5 @@ import 'package:flutter/material.dart';
 
 class MainBorders {
   static TableBorder customTableBorder =
-      TableBorder.all(width: 3, color: MainColors.color2);
+      TableBorder.all(width: 1.5, color: MainColors.color2);
 }

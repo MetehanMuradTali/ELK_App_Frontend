@@ -20,5 +20,5 @@ class SearchState {
       this.currentState = SearchingStates.initial,
       this.columnName = "proto",
       this.valueToSearch = "",
-      this.totalResultCount = 1});
+      this.totalResultCount = 0});
 }

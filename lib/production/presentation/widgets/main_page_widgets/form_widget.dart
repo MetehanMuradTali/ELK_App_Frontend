@@ -4,7 +4,8 @@ import 'package:elk_frontend/production/others/constants/projects_lists.dart';
 import 'package:elk_frontend/production/others/decorations/custom_decorations.dart';
 import 'package:elk_frontend/production/others/decorations/custom_paddings.dart';
 import 'package:elk_frontend/production/others/decorations/custom_styles.dart';
-import 'package:elk_frontend/production/presentation/state_manement/cubit/search_cubit.dart';
+import 'package:elk_frontend/production/presentation/state_manement/cubit/search_cubit/search_cubit.dart';
+import 'package:elk_frontend/production/presentation/widgets/main_page_widgets/count_widget/count_widget.dart';
 import 'package:elk_frontend/production/presentation/widgets/main_page_widgets/dropdown.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,8 @@ class _FormState extends State<FormWidget> {
           children: [
             customTextFormField(),
             const CustomDropDownWidget(),
-            searchButton()
+            searchButton(),
+            const CountWidget(),
           ],
         ),
       ),

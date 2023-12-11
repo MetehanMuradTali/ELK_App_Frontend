@@ -4,27 +4,34 @@ import 'package:elk_frontend/production/others/constants/projects_lists.dart';
 import 'package:elk_frontend/production/others/decorations/custom_decorations.dart';
 import 'package:elk_frontend/production/others/decorations/custom_paddings.dart';
 import 'package:elk_frontend/production/others/decorations/custom_styles.dart';
-import 'package:elk_frontend/production/presentation/state_manement/cubit/report_cubit/report_cubit.dart';
+import 'package:elk_frontend/production/others/decorations/project_colors.dart';
+import 'package:elk_frontend/production/presentation/state_manement/cubit/last1hour_cubit/last1hour_cubit.dart';
 import 'package:elk_frontend/production/presentation/widgets/main_page_widgets/dropdown.widget.dart';
 import 'package:elk_frontend/production/presentation/widgets/main_page_widgets/tooltip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ReportWidget extends StatefulWidget {
-  const ReportWidget({super.key});
+class Last1Hour extends StatefulWidget {
+  const Last1Hour({super.key});
 
   @override
-  State<ReportWidget> createState() => _ReportWidgetState();
+  State<Last1Hour> createState() => _Last1HourState();
 }
 
-class _ReportWidgetState extends State<ReportWidget> {
+class _Last1HourState extends State<Last1Hour> {
   getIps(String? newValue) {
-    BlocProvider.of<ReportCubit>(context).getTheIPAddresses(newValue!);
+    BlocProvider.of<Last1HourCubit>(context).getTheIPAddresses(newValue!);
     setState(() {});
   }
 
   sendToBackend() {
-    BlocProvider.of<ReportCubit>(context).sendToBackend();
+    BlocProvider.of<Last1HourCubit>(context).sendToBackend();
+  }
+
+  @override
+  void initState() {
+    getIps(BlocProvider.of<Last1HourCubit>(context).state.categoryValue);
+    super.initState();
   }
 
   @override
@@ -32,11 +39,11 @@ class _ReportWidgetState extends State<ReportWidget> {
     return Container(
         padding: CustomPaddings.mainPadding,
         decoration: CustomBoxDecorations.outsideBoxDecor,
-        child: BlocBuilder<ReportCubit, ReportState>(
+        child: BlocBuilder<Last1HourCubit, Last1HourState>(
           builder: (context, state) {
             bool btnState;
             switch (state.currentState) {
-              case ReportStates.success:
+              case Last1HourStates.success:
                 btnState = true;
               default:
                 btnState = false;
@@ -48,15 +55,15 @@ class _ReportWidgetState extends State<ReportWidget> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 const CustomTooltip(
-                    headerText: ReportWidgetStrings.headerText,
-                    tooltipText: ReportWidgetStrings.tooltipText),
+                    headerText: Last1HourWidgetStrings.headerText,
+                    tooltipText: Last1HourWidgetStrings.tooltipText),
                 Container(
                   decoration: CustomBoxDecorations.ddWidgetOutsideDecor,
                   width: SortWidgetDoubles.mainWidth / 2,
                   child: DDWidget(
                       callback: getIps,
                       items: ReportWidgetList.ddWidgetOptions,
-                      selectedColumn: BlocProvider.of<ReportCubit>(context)
+                      selectedColumn: BlocProvider.of<Last1HourCubit>(context)
                           .state
                           .categoryValue),
                 ),

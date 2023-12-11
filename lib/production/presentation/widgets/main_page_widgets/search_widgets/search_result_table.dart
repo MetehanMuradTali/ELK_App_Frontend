@@ -6,7 +6,7 @@ import 'package:elk_frontend/production/others/decorations/custom_borders.dart';
 import 'package:elk_frontend/production/others/decorations/custom_decorations.dart';
 import 'package:elk_frontend/production/others/decorations/custom_styles.dart';
 import 'package:elk_frontend/production/others/decorations/project_colors.dart';
-import 'package:elk_frontend/production/presentation/state_manement/cubit/search_cubit.dart';
+import 'package:elk_frontend/production/presentation/state_manement/cubit/search_cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,55 +16,55 @@ class SearchResultTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SearchCubit, SearchState>(
-      builder: (context, state) {
-        List<DataRow> source =
-            generateRows(newState: state.currentState, rows: state.datas);
-        return DataTable2(
-          columns: MainLists.dataTableColumnNames,
-          rows: source,
-          minWidth: SearchWidgetDoubles.minWidth,
-          isHorizontalScrollBarVisible: true,
-          decoration: SearchWidgetDecorations.searchTableDecor,
-          dataTextStyle: MainStyles.whiteStyle,
-          headingRowColor: const MaterialStatePropertyAll(MainColors.color2),
-          headingTextStyle: MainStyles.whiteHeaderStyle,
-          border: MainBorders.customTableBorder,
-          dividerThickness: MainDoubles.tableDividerTickness,
-        );
-      },
-      listenWhen: (previous, current) {
-        if (previous.currentState == current.currentState) {
-          return false;
-        } else {
-          return true;
-        }
-      },
-      listener: snacbarGenerator
-    );
+        builder: (context, state) {
+          List<DataRow> source =
+              generateRows(newState: state.currentState, rows: state.datas);
+          return DataTable2(
+            columns: MainLists.dataTableColumnNames,
+            rows: source,
+            minWidth: SearchWidgetDoubles.minWidth,
+            isHorizontalScrollBarVisible: true,
+            decoration: SearchWidgetDecorations.searchTableDecor,
+            dataTextStyle: MainStyles.whiteStyle,
+            headingRowColor: MaterialStatePropertyAll(MainColors.color4),
+            headingTextStyle: MainStyles.whiteHeaderStyle,
+            border: MainBorders.customTableBorder,
+            dividerThickness: MainDoubles.tableDividerTickness,
+          );
+        },
+        listenWhen: (previous, current) {
+          if (previous.currentState == current.currentState) {
+            return false;
+          } else {
+            return true;
+          }
+        },
+        listener: snacbarGenerator);
   }
-  snacbarGenerator(context,SearchState state) {
-        String result = "";
-        Color backgroundColor = Colors.red;
-        switch (state.currentState) {
-          case SearchingStates.success:
-            result = SnackBarStrings.success;
-            backgroundColor = MainColors.color1;
-          case SearchingStates.loading:
-            result = SnackBarStrings.loading;
-            backgroundColor = Colors.yellow;
-          case SearchingStates.empty:
-            result = SnackBarStrings.empty;
-            backgroundColor = Colors.red;
-          default:
-            result = SnackBarStrings.failed;
-            backgroundColor = Colors.red;
-        }
-        ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Center(child: Text(result)),
-          backgroundColor: backgroundColor,
-        ));
-      }
+
+  snacbarGenerator(context, SearchState state) {
+    String result = "";
+    Color backgroundColor = Colors.red;
+    switch (state.currentState) {
+      case SearchingStates.success:
+        result = SnackBarStrings.success;
+        backgroundColor = MainColors.color1;
+      case SearchingStates.loading:
+        result = SnackBarStrings.loading;
+        backgroundColor = Colors.yellow;
+      case SearchingStates.empty:
+        result = SnackBarStrings.empty;
+        backgroundColor = Colors.red;
+      default:
+        result = SnackBarStrings.failed;
+        backgroundColor = Colors.red;
+    }
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Center(child: Text(result)),
+      backgroundColor: backgroundColor,
+    ));
+  }
 }
 
 List<DataRow> generateRows(
