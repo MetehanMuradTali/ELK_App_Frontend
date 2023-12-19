@@ -27,43 +27,44 @@ class _SendIpsWidgetState extends State<SendIpsWidget> {
         padding: CustomPaddings.mainPadding,
         decoration: CustomBoxDecorations.outsideBoxDecor,
         child: BlocConsumer<SendIpsCubit, SendIpsState>(
-          buildWhen: (previous, current) {
-            if (previous.currentState == current.currentState) {
-              return false;
-            } else {
-              return true;
-            }
-          },
-          builder: (context, state) {
-            return Wrap(
-              alignment: WrapAlignment.center,
-              spacing: MainDoubles.wrapSpacing1,
-              runSpacing: MainDoubles.wrapSpacing1,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                const CustomTooltip(
-                    headerText: ReportWidgetStrings.headerText,
-                    tooltipText: ReportWidgetStrings.tooltipText),
-                customTextFormField1(),
-                customTextFormField2(),
-                TextButton(
-                    style: FormWidgetStyles.searchBtnStyle,
-                    onPressed: () {
-                      sendIps();
-                    },
-                    child: const Text(MainStrings.reportBtnString)),
-              ],
-            );
-          },
-          listenWhen: (previous, current) {
-          if (previous.currentState == current.currentState) {
-            return false;
-          } else {
-            return true;
-          }
-        },
-        listener: snacbarGenerator));
+            buildWhen: (previous, current) {
+              if (previous.currentState == current.currentState) {
+                return false;
+              } else {
+                return true;
+              }
+            },
+            builder: (context, state) {
+              return Wrap(
+                alignment: WrapAlignment.center,
+                spacing: MainDoubles.wrapSpacing1,
+                runSpacing: MainDoubles.wrapSpacing1,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  const CustomTooltip(
+                      headerText: StatusStrings.headerText,
+                      tooltipText: StatusStrings.tooltipText),
+                  customTextFormField1(),
+                  customTextFormField2(),
+                  TextButton(
+                      style: FormWidgetStyles.searchBtnStyle,
+                      onPressed: () {
+                        sendIps();
+                      },
+                      child: const Text(MainStrings.reportBtnString)),
+                ],
+              );
+            },
+            listenWhen: (previous, current) {
+              if (previous.currentState == current.currentState) {
+                return false;
+              } else {
+                return true;
+              }
+            },
+            listener: snacbarGenerator));
   }
+
   snacbarGenerator(context, SendIpsState state) {
     String result = "";
     Color backgroundColor = Colors.red;
@@ -112,7 +113,7 @@ class _SendIpsWidgetState extends State<SendIpsWidget> {
         child: TextFormField(
           onChanged: textFormFieldFunction2,
           style: MainStyles.greenStyle,
-          decoration: FormWidgetDecorations.statusTextFormDecoration1,
+          decoration: FormWidgetDecorations.statusTextFormDecoration2,
         ),
       );
 }

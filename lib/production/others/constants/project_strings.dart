@@ -123,4 +123,9 @@ class StatusStrings {
   ///FormWidgetValues
   static const String textFieldHint1 = "Source Adress";
   static const String textFieldHint2 = "Destination Adress";
+
+  //Tooltip
+  static const String headerText = "Send Ip's To HpConfig";
+  static const String tooltipText =
+      "Send the Source Address And Destination Address to HpConfig with button ";
 }
