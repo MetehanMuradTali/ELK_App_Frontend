@@ -1,5 +1,7 @@
 class MainDoubles {
   static const double headerFontSize = 16.0;
+  static const double iconFontSize = 35.0;
+
   static const double insideSpacings = 10.0;
   static const double tableDividerTickness = 3.0;
   static const double mainHeight = 538.0;
@@ -17,7 +19,7 @@ class FormWidgetDoubles {
 }
 
 class SortWidgetDoubles {
-  static const double mainWidth = 400.0;
+  static const double mainWidth = 550.0;
 }
 
 class SearchWidgetDoubles {

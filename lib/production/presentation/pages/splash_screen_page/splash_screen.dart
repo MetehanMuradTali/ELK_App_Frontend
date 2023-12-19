@@ -1,7 +1,7 @@
 import 'package:elk_frontend/core/sizes.dart';
 import 'package:elk_frontend/production/others/constants/project_strings.dart';
 import 'package:elk_frontend/production/others/decorations/project_colors.dart';
-import 'package:elk_frontend/production/presentation/pages/main_page/main_page.dart';
+import 'package:elk_frontend/production/presentation/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,19 +15,22 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool animate = true;
   Future startAnimation() async {
-    await Future.delayed(Duration(milliseconds: 800));
+    await Future.delayed(const Duration(milliseconds: 800));
     setState(() {
       animate = false;
     });
-    await Future.delayed(Duration(milliseconds: 1200));
+    await Future.delayed(const Duration(milliseconds: 1200));
     //Navigate
-    Navigator.pushReplacement(
+    goToMain();
+   
+  }
+  goToMain(){
+     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchPage(),
+          builder: (context) => const MainPage(),
         ));
   }
-
   @override
   void initState() {
     startAnimation();

@@ -61,6 +61,9 @@ class MainLists {
     DropdownMenuItem(
         value: MainStrings.searchOption11value,
         child: Text(MainStrings.searchOption11)),
+    DropdownMenuItem(
+        value: MainStrings.searchOption12value,
+        child: Text(MainStrings.searchOption12)),
   ];
 }
 
@@ -99,8 +102,13 @@ class SearchWidgetList {
 
 class SortWidgetLists {
   static const List<DataColumn> sortTableColumnNames = [
+    DataColumn(label: Center(child: Text(SortWidgetStrings.columnName4))),
+    DataColumn(label: Center(child: Text(SortWidgetStrings.columnName3)))
+  ];
+  static const List<DataColumn> sortTableColumnNames2 = [
     DataColumn(label: Center(child: Text(SortWidgetStrings.columnName1))),
-    DataColumn(label: Center(child: Text(SortWidgetStrings.columnName2)))
+    DataColumn(label: Center(child: Text(SortWidgetStrings.columnName2))),
+    DataColumn(label: Center(child: Text(SortWidgetStrings.columnName3))),
   ];
 
   static const DataRow loadingRow = DataRow(
@@ -111,8 +119,24 @@ class SortWidgetLists {
     color: MaterialStatePropertyAll(MainColors.color1),
   );
 
+  static const DataRow loadingRow2 = DataRow(
+    cells: [
+      DataCell(LinearProgressIndicator()),
+      DataCell(LinearProgressIndicator()),
+      DataCell(LinearProgressIndicator()),
+    ],
+    color: MaterialStatePropertyAll(MainColors.color1),
+  );
   static const DataRow emptyRow = DataRow(
     cells: [
+      DataCell(Text("")),
+      DataCell(Text("")),
+    ],
+    color: MaterialStatePropertyAll(MainColors.color1),
+  );
+  static const DataRow emptyRow2 = DataRow(
+    cells: [
+      DataCell(Text("")),
       DataCell(Text("")),
       DataCell(Text("")),
     ],
@@ -138,4 +162,70 @@ class ReportWidgetList{
           value: ReportWidgetStrings.ddOption5value,
           child: Text(ReportWidgetStrings.ddOption5value)),
     ];
+}
+
+class IpStatusWidgetLists{
+  static const List<DataColumn> tableColumnNames = [
+    DataColumn(label: Center(child: Text(IpStatusWidgetStrings.columnName1))),
+    DataColumn(label: Center(child: Text(IpStatusWidgetStrings.columnName2))),
+    DataColumn(label: Center(child: Text(IpStatusWidgetStrings.columnName3))),
+  ];
+  static const DataRow loadingRow = DataRow(
+    cells: [
+      DataCell(LinearProgressIndicator()),
+      DataCell(LinearProgressIndicator()),
+      DataCell(Text("Waiting Response")),
+    ],
+    color: MaterialStatePropertyAll(MainColors.color1),
+  );
+  static const DataRow emptyRow = DataRow(
+    cells: [
+      DataCell(Text("")),
+      DataCell(Text("")),
+      DataCell(Text("")),
+    ],
+    color: MaterialStatePropertyAll(MainColors.color1),
+  );
+}
+
+
+class StatusPageLists{
+  static const List<DropdownMenuItem<dynamic>> ddWidgetOptions = [
+    DropdownMenuItem(
+        value: StatusStrings.searchDDOption1value,
+        child: Text(StatusStrings.searchDDOption1)),
+    DropdownMenuItem(
+        value: StatusStrings.searchDDOption2value,
+        child: Text(StatusStrings.searchDDOption2)),
+    DropdownMenuItem(
+        value: StatusStrings.searchDDOption3value,
+        child: Text(StatusStrings.searchDDOption3)),
+    DropdownMenuItem(
+        value: StatusStrings.searchDDOption4value,
+        child: Text(StatusStrings.searchDDOption4)),
+    
+  ];
+  static const List<DataColumn> dataTableColumnNames = [
+    DataColumn(
+        label: Center(child: Text(StatusStrings.searchTableColumn1, softWrap: true))),
+    DataColumn(
+        label: Center(child: Text(StatusStrings.searchTableColumn2, softWrap: true))),
+    DataColumn(
+        label: Center(child: Text(StatusStrings.searchTableColumn3, softWrap: true))),
+  ];
+
+   static List<DataRow> emptyRows = List<DataRow>.generate(
+      10,
+      (index) => const DataRow(cells: [
+            DataCell(Text("")),
+            DataCell(Text("")),
+            DataCell(Text("")),
+          ], color: MaterialStatePropertyAll(MainColors.color1)));
+  static List<DataRow> loadingRows = List<DataRow>.generate(
+      10,
+      (index) => const DataRow(cells: [
+            DataCell(LinearProgressIndicator()),
+            DataCell(LinearProgressIndicator()),
+            DataCell(LinearProgressIndicator()),
+          ], color: MaterialStatePropertyAll(MainColors.color1)));
 }

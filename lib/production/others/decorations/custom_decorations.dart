@@ -31,6 +31,24 @@ class FormWidgetDecorations {
       border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: CustomRadiuses.mainBorderR));
+  static const InputDecoration statusTextFormDecoration1 = InputDecoration(
+      hintText: StatusStrings.textFieldHint1,
+      hintStyle: TextStyle(color: MainColors.color2),
+      prefixIcon: Icon(Icons.manage_search_outlined),
+      fillColor: MainColors.color3,
+      filled: true,
+      border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: CustomRadiuses.mainBorderR));
+  static const InputDecoration statusTextFormDecoration2 = InputDecoration(
+      hintText: StatusStrings.textFieldHint2,
+      hintStyle: TextStyle(color: MainColors.color2),
+      prefixIcon: Icon(Icons.manage_search_outlined),
+      fillColor: MainColors.color3,
+      filled: true,
+      border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: CustomRadiuses.mainBorderR));
 }
 
 class SearchWidgetDecorations {

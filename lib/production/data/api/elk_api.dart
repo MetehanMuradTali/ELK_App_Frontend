@@ -7,12 +7,14 @@ class ElkApiService {
       {required String columnName,
       required String value,
       int pageNumber = 1}) async {
-    var searchUrl = Uri.http(
-        '127.0.0.1:5000', 'search/page/$columnName/$value/$pageNumber');
+    var searchUrl = Uri.http('127.0.0.1:5000', 'search/page');
+    var encoded = json.encode(
+        {"column": columnName, "value": value, "pageNumber": pageNumber});
+
     try {
-      var rawResponse = await http.get(searchUrl);
-      Map<String, dynamic> decodedResponse =
-          json.decode(rawResponse.body.replaceAll("NaN", '"Not a Number"'));
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
+      Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
       return decodedResponse;
     } catch (error) {
       return {"result": "connection_error"};
@@ -20,10 +22,12 @@ class ElkApiService {
   }
 
   getCountOfResults({required String columnName, required String value}) async {
-    var searchUrl =
-        Uri.http('127.0.0.1:5000', 'search/count/$columnName/$value');
+    var searchUrl = Uri.http('127.0.0.1:5000', 'search/count');
+    var encoded = json.encode({"column": columnName, "value": value});
+
     try {
-      var rawResponse = await http.get(searchUrl);
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
       Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
       return decodedResponse;
     } catch (error) {
@@ -35,10 +39,13 @@ class ElkApiService {
       {required String columnName,
       required String value,
       required String sort}) async {
-    var searchUrl = Uri.http(
-        '127.0.0.1:5000', 'search/aggregations/$columnName/$value/$sort');
+    var searchUrl = Uri.http('127.0.0.1:5000', 'search/aggregations');
+    var encoded =
+        json.encode({"column": columnName, "value": value, "sort": sort});
+
     try {
-      var rawResponse = await http.get(searchUrl);
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
       Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
       return decodedResponse;
     } catch (error) {
@@ -50,22 +57,17 @@ class ElkApiService {
       {required String columnName,
       required String colValue,
       required String categoryType}) async {
-    var searchUrl = Uri.http('127.0.0.1:5000',
-        'report/get/aggregations/$columnName/$colValue/$categoryType');
-    try {
-      var rawResponse = await http.get(searchUrl);
-      Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
-      return decodedResponse;
-    } catch (error) {
-      return {"result": "connection_error"};
-    }
-  }
-
-  sendTheReport({required List<dynamic> aggregationList}) async {
     var searchUrl =
-        Uri.http('127.0.0.1:5000', 'report/post/aggregations/$aggregationList');
+        Uri.http('127.0.0.1:5000', '/search/aggregations/getAddresses');
+    var encoded = json.encode({
+      "column": columnName,
+      "colValue": colValue,
+      "categoryType": categoryType
+    });
+
     try {
-      var rawResponse = await http.get(searchUrl);
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
       Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
       return decodedResponse;
     } catch (error) {
@@ -89,6 +91,72 @@ class ElkApiService {
         Uri.http('127.0.0.1:5000', 'search/latesthour/$categoryType');
     try {
       var rawResponse = await http.get(searchUrl);
+      Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
+      return decodedResponse;
+    } catch (error) {
+      return {"result": "connection_error"};
+    }
+  }
+
+  sendTheReport({required List<dynamic> aggregationList}) async {
+    var searchUrl = Uri.http('127.0.0.1:5000', '/status/update/list');
+    var encoded = json.encode({"list": aggregationList});
+    try {
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
+      Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
+      return decodedResponse;
+    } catch (error) {
+      return {"result": "connection_error"};
+    }
+  }
+
+  sendTheIps({required String saddr,required String daddr}) async {
+    var searchUrl = Uri.http('127.0.0.1:5000', '/status/update/one');
+    var encoded = json.encode({"saddr": saddr,"daddr":daddr});
+    try {
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
+      Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
+      return decodedResponse;
+    } catch (error) {
+      return {"result": "connection_error"};
+    }
+  }
+  getStatus(
+      {required String sourceAdress,
+      required String destinationAdress,
+      required String status,
+      int pageNumber = 1}) async {
+    var searchUrl = Uri.http('127.0.0.1:5000', 'status/get/page');
+    var encoded = json.encode({
+      "saddr": sourceAdress,
+      "daddr": destinationAdress,
+      "status": status,
+      "pageNumber": pageNumber
+    });
+
+    try {
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
+      Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
+      return decodedResponse;
+    } catch (error) {
+      return {"result": "connection_error"};
+    }
+  }
+
+  getCountOfStatusResults(
+      {required String sourceAdress,
+      required String destinationAdress,
+      required String status}) async {
+    var searchUrl = Uri.http('127.0.0.1:5000', 'status/get/count');
+    var encoded = json.encode(
+        {"saddr": sourceAdress, "daddr": destinationAdress, "status": status});
+
+    try {
+      var rawResponse = await http.post(searchUrl,
+          headers: {"Content-Type": "application/json"}, body: encoded);
       Map<String, dynamic> decodedResponse = json.decode(rawResponse.body);
       return decodedResponse;
     } catch (error) {
