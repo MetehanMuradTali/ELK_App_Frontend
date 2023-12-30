@@ -73,7 +73,6 @@ List<DataRow> generateRows(
     case SearchingStates.success:
       return rows.map((row) {
         return DataRow(cells: [
-          DataCell(Text("${row[MainStrings.searchOption1value]}")),
           DataCell(Text("${row[MainStrings.searchOption2value]}")),
           DataCell(Text("${row[MainStrings.searchOption3value]}")),
           DataCell(Text("${row[MainStrings.searchOption4value]}")),
@@ -84,6 +83,7 @@ List<DataRow> generateRows(
           DataCell(Text("${row[MainStrings.searchOption9value]}")),
           DataCell(Text("${row[MainStrings.searchOption10value]}")),
           DataCell(Text("${row[MainStrings.searchOption11value]}")),
+          DataCell(Text("${row[MainStrings.searchOption12value]}")),
         ], color: const MaterialStatePropertyAll(MainColors.color1));
       }).toList();
     case SearchingStates.loading:

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class MainLists {
   static const List<DataColumn> dataTableColumnNames = [
     DataColumn(
-        label: Center(child: Text(MainStrings.searchOption1, softWrap: true))),
-    DataColumn(
         label: Center(child: Text(MainStrings.searchOption2, softWrap: true))),
     DataColumn(
         label: Center(child: Text(MainStrings.searchOption3, softWrap: true))),
@@ -26,6 +24,8 @@ class MainLists {
         label: Center(child: Text(MainStrings.searchOption10, softWrap: true))),
     DataColumn(
         label: Center(child: Text(MainStrings.searchOption11, softWrap: true))),
+         DataColumn(
+        label: Center(child: Text(MainStrings.searchOption12, softWrap: true))),
   ];
   static const List<DropdownMenuItem<dynamic>> ddWidgetOptions = [
     DropdownMenuItem(
